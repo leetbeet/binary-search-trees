@@ -181,7 +181,7 @@ class Tree {
   }
 
   height(value) {
-    let node = find(value);
+    let node = this.find(value);
 
     if (!node) return null;
 
@@ -233,7 +233,7 @@ class Tree {
 
   rebalance() {
     const array = [];
-    inOrderForEach((node) => array.push(node.data));
+    this.inOrderForEach((node) => array.push(node.data));
     this.root = this.buildTree(array);
   }
 }
