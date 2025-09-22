@@ -199,4 +199,23 @@ class Tree {
 
     return maxHeight;
   }
+
+  depth(value) {
+    let current = this.root;
+    let depth = 0;
+
+    while (current) {
+      if (value < current.data) {
+        current = current.left;
+        depth++;
+      } else if (value > current.data) {
+        current = current.right;
+        depth++;
+      } else {
+        return depth;
+      }
+    }
+
+    return null;
+  }
 }
