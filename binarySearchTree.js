@@ -114,4 +114,19 @@ class Tree {
 
     return null;
   }
+
+  levelOrderForEach(callback) {
+    if (typeof callback !== "function") {
+      throw new Error("Callback is required.");
+    }
+
+    const q = [this.root];
+    let i = 0;
+    while (i < q.length) {
+      const node = q[i++];
+      callback(node);
+      if (node.left) q.push(node.left);
+      if (node.right) q.push(node.right);
+    }
+  }
 }
