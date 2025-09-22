@@ -218,4 +218,16 @@ class Tree {
 
     return null;
   }
+
+  isBalanced(root = this.root) {
+    if (root === null) return true;
+
+    if (Math.abs(this.height(root.left) - this.height(root.right)) > 1)
+      return false;
+
+    if (!this.isBalanced(root.right) || !this.isBalanced(root.left))
+      return false;
+
+    return true;
+  }
 }
