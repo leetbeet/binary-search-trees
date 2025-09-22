@@ -175,8 +175,8 @@ class Tree {
 
     if (root === null) return;
 
-    this.postOrderForEachOrderForEach(callback, root.left);
-    this.postOrderForEachOrderForEach(callback, root.right);
+    this.postOrderForEach(callback, root.left);
+    this.postOrderForEach(callback, root.right);
     callback(root);
   }
 
