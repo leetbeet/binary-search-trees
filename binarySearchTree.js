@@ -220,15 +220,21 @@ export class Tree {
   }
 
   isBalanced(root = this.root) {
-    if (root === null) return true;
+    const checkHeight = (node) => {
+      if (node === null) return 0;
 
-    if (Math.abs(this.height(root.left) - this.height(root.right)) > 1)
-      return false;
+      const leftHeight = checkHeight(node.left);
+      if (leftHeight === -1) return -1;
 
-    if (!this.isBalanced(root.right) || !this.isBalanced(root.left))
-      return false;
+      const rightHeight = checkHeight(node.right);
+      if (rightHeight === -1) return -1;
 
-    return true;
+      if (Math.abs(leftHeight - rightHeight) > 1) return -1;
+
+      return 1 + Math.max(leftHeight, rightHeight);
+    };
+
+    return checkHeight(root) !== -1;
   }
 
   rebalance() {
