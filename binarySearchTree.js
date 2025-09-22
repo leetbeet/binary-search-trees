@@ -6,7 +6,7 @@ class Node {
   }
 }
 
-class Tree {
+export class Tree {
   constructor(array) {
     this.root = this.buildTree([...new Set(array.sort((a, b) => a - b))]);
   }
@@ -193,8 +193,8 @@ class Tree {
       const right = stack[stack.length - 1][0].right;
       maxHeight = Math.max(maxHeight, depth);
       stack.pop();
-      if (left) stack.push([left, depth + 1]);
-      if (right) stack.push([right, depth + 1]);
+      if (left) stack.push([left.data, depth + 1]);
+      if (right) stack.push([right.data, depth + 1]);
     }
 
     return maxHeight;
