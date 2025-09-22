@@ -129,4 +129,18 @@ class Tree {
       if (node.right) q.push(node.right);
     }
   }
+
+  levelOrderForEachRec(callback, q = [this.root], i = 0) {
+    if (typeof callback !== "function") {
+      throw new Error("Callback is required.");
+    }
+
+    if (i < q.length) {
+      const node = q[i++];
+      callback(node);
+      if (node.left) q.push(node.left);
+      if (node.right) q.push(node.right);
+      this.levelOrderForEachRec(callback, q, i);
+    }
+  }
 }
