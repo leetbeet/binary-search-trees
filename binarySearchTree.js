@@ -22,4 +22,80 @@ class Tree {
 
     return root;
   }
+
+  insert(value) {
+    let current = this.root;
+
+    while (current) {
+      if (value < current.data) {
+        if (current.left) {
+          current = current.left;
+        } else {
+          current.left = new Node(value);
+        }
+      } else if (value > current.data) {
+        if (current.right) {
+          current = current.right;
+        } else {
+          current.right = new Node(value);
+        }
+      } else {
+        return;
+      }
+    }
+  }
+
+  deleteItem(value) {
+    let current = this.root;
+    let prev = null;
+
+    while (current) {
+      if (value < current.data) {
+        prev = current;
+        current = current.left;
+      } else if (value > current.data) {
+        prev = current;
+        current = current.right;
+      } else {
+        if (current.right && current.left) {
+          // has 2 children
+          let succParent = current;
+          let succ = current.right;
+          while (succ.left) {
+            succParent = succ;
+            succ = succ.left;
+          }
+
+          current.data = succ.data;
+
+          if (succParent.left === succ) {
+            succParent.left = succ.right;
+          } else {
+            succParent.right = succ.right;
+          }
+          break;
+        } else if (current.left || current.right) {
+          // has 1 child
+          if (!prev) {
+            this.root = current.left || current.right;
+          } else if (prev.right === current) {
+            prev.right = current.left || current.right;
+          } else {
+            prev.left = current.left || current.right;
+          }
+          break;
+        } else {
+          // no children
+          if (!prev) {
+            this.root = null;
+          } else if (prev.right === current) {
+            prev.right = null;
+          } else {
+            prev.left = null;
+          }
+        }
+        break;
+      }
+    }
+  }
 }
