@@ -143,4 +143,40 @@ class Tree {
       this.levelOrderForEachRec(callback, q, i);
     }
   }
+
+  inOrderForEach(callback, root = this.root) {
+    if (typeof callback !== "function") {
+      throw new Error("Callback is required.");
+    }
+
+    if (root === null) return;
+
+    this.inOrderForEach(callback, root.left);
+    callback(root);
+    this.inOrderForEach(callback, root.right);
+  }
+
+  preOrderForEach(callback, root = this.root) {
+    if (typeof callback !== "function") {
+      throw new Error("Callback is required.");
+    }
+
+    if (root === null) return;
+
+    callback(root);
+    this.preOrderForEach(callback, root.left);
+    this.preOrderForEach(callback, root.right);
+  }
+
+  postOrderForEach(callback, root = this.root) {
+    if (typeof callback !== "function") {
+      throw new Error("Callback is required.");
+    }
+
+    if (root === null) return;
+
+    this.postOrderForEachOrderForEach(callback, root.left);
+    callback(root);
+    this.postOrderForEachOrderForEach(callback, root.right);
+  }
 }
