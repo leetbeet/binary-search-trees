@@ -230,4 +230,10 @@ class Tree {
 
     return true;
   }
+
+  rebalance() {
+    const array = [];
+    inOrderForEach((node) => array.push(node.data));
+    this.root = this.buildTree(array);
+  }
 }
