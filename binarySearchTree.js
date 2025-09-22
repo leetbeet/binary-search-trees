@@ -179,4 +179,24 @@ class Tree {
     callback(root);
     this.postOrderForEachOrderForEach(callback, root.right);
   }
+
+  height(value) {
+    let node = find(value);
+
+    if (!node) return null;
+
+    const stack = [[node, 0]];
+    let maxHeight = 0;
+    while (stack.length > 0) {
+      const depth = stack[stack.length - 1][1];
+      const left = stack[stack.length - 1][0].left;
+      const right = stack[stack.length - 1][0].right;
+      maxHeight = Math.max(maxHeight, depth);
+      stack.pop();
+      if (left) stack.push([left, depth + 1]);
+      if (right) stack.push([right, depth + 1]);
+    }
+
+    return maxHeight;
+  }
 }
