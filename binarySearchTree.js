@@ -176,8 +176,8 @@ class Tree {
     if (root === null) return;
 
     this.postOrderForEachOrderForEach(callback, root.left);
-    callback(root);
     this.postOrderForEachOrderForEach(callback, root.right);
+    callback(root);
   }
 
   height(value) {
